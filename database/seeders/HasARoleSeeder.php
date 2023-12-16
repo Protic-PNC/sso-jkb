@@ -13,9 +13,14 @@ class HasARoleSeeder extends Seeder
      */
     public function run(): void
     {
-        HasARole::insert(
-            ["id_dosen"=>1,"id_role"=>1],
-            ["id_dosen"=>1,"id_role"=>2],
-        );
+        $has = [
+            ["id_dosen" => 1, "id_role" => 1],
+            ["id_dosen" => 1, "id_role" => 2]
+        ];
+        foreach ($has as $j) {
+            HasARole::insert(
+                $j
+            );
+        }
     }
 }

@@ -13,8 +13,14 @@ class ProdiSeeder extends Seeder
      */
     public function run(): void
     {
-        Prodi::insert(
-            ["id"=>1,"nama"=>"informatika","id_jenjang"=>1,"kaprodi"=>"cahya vikasari"]
-        );
+        $prodi = [
+            ["id" => 1, "nama" => "informatika", "id_jenjang" => 1, "kaprodi" => "cahya vikasari"],
+            ["id" => 2, "nama" => "rks", "id_jenjang" => 2, "kaprodi" => "--"]
+        ];
+        foreach($prodi as $j){
+            Prodi::insert(
+                $j
+            );
+        }
     }
 }

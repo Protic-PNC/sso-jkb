@@ -13,9 +13,15 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::insert(
-            ["nama"=>"walikelas"],
-            ["nama"=>"kaprodi"]
-        );
+        $role = [
+            ["id" => 1, "nama" => "walikelas"],
+            ["id" => 2, "nama" => "dosen"],
+            ["id" => 3, "nama" => "kaprodi"]
+        ];
+        foreach ($role as $j) {
+            Role::insert(
+                $j
+            );
+        }
     }
 }

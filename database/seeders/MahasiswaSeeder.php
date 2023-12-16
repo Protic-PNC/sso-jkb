@@ -13,9 +13,15 @@ class MahasiswaSeeder extends Seeder
      */
     public function run(): void
     {
-        Mahasiswa::insert(
+        $mhs = [
             ["id"=>1,"nama"=>"yanuar prayoga","id_kelas"=>1,"nim"=>220302072],
-            ["id"=>2,"nama"=>"raditya anggraito a","id_kelas","id_kelas"=>1,"nim"=>220302069],
-        );
+            ["id"=>2,"nama"=>"raditya anggraito a","id_kelas"=>1,"nim"=>220302069],
+        ];
+      
+        foreach($mhs as $j){
+            Mahasiswa::insert(
+                $j
+            );
+        }
     }
 }

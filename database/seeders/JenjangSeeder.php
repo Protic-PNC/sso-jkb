@@ -13,10 +13,15 @@ class JenjangSeeder extends Seeder
      */
     public function run(): void
     {
-        Jenjang::insert(
+        $jenjang = [
             ["id"=>1,"nama"=>"D3"],
             ["id"=>2,"nama"=>"D4"]
-        );
+        ];
+        foreach($jenjang as $j){
+            Jenjang::insert(
+                $j
+            );
+        }
          
     }
 }

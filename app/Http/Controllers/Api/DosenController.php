@@ -2,47 +2,47 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Mahasiswa;
+use App\Models\Dosen;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class MahasiswaController extends Controller
+class DosenController extends Controller
 {
-    public function getMhs()
+    public function getDosen()
     {
-        $mahasiswa = Mahasiswa::with('kelas')->get();
+        $Dosen = Dosen::with('prodi')->get();
         return response()->json([
             "status" => "success",
-            "message" => "berhasil mendapatkan data semua mahasiswa",
-            "data" => $mahasiswa
+            "message" => "berhasil mendapatkan data semua Dosen",
+            "data" => $Dosen
         ]);
     }
-    public function getMhsById($id)
+    public function getDosenById($id)
     {
-        $mahasiswa = Mahasiswa::with('kelas')->findOrFail($id);
+        $Dosen = Dosen::with('prodi')->findOrFail($id);
         return response()->json([
             "status" => "success",
-            "message" => "berhasil mendapatkan data  mahasiswa",
-            "data" => $mahasiswa
+            "message" => "berhasil mendapatkan data  Dosen",
+            "data" => $Dosen
         ]);
     }
     public function store(Request $request)
     {
         try {
             # code...
-            $mahasiswaData = [
-                "id" =>$request->input('nim'),
+            $DosenData = [
+                "id" =>$request->input('nidn'),
                 "nama" => $request->input('nama'),
-                "nim" => $request->input('nim'),
-                "id_kelas" => $request->input('id_kelas')
+                "nidn" => $request->input('nidn'),
+                "id_prodi" => $request->input('id_prodi')
             ];
         
-            $insertMahasiswa = Mahasiswa::create($mahasiswaData);
+            $insertDosen = Dosen::create($DosenData);
         
             return response()->json([
                 "status" => "success",
-                "message" => "berhasil menambahkan data  mahasiswa",
-                "data" => $insertMahasiswa
+                "message" => "berhasil menambahkan data  Dosen",
+                "data" => $insertDosen
             ]);
         } catch (\Throwable $e) {
             # code...
@@ -56,20 +56,20 @@ class MahasiswaController extends Controller
     {
         try {
             # code...
-            $mahasiswaData = [
+            $DosenData = [
                 "nama" => $request->input('nama'),
-                "nim" => $request->input('nim'),
-                "id_kelas" => $request->input('id_kelas')
+                "nidn" => $request->input('nidn'),
+                "id_prodi" => $request->input('id_prodi')
             ];
 
         
-            $mhs = Mahasiswa::findOrFail($id);
-            $mhs->update($mahasiswaData);
+            $Dosen = Dosen::findOrFail($id);
+            $Dosen->update($DosenData);
         
             return response()->json([
                 "status" => "success",
-                "message" => "berhasil update data  mahasiswa",
-                "data" => $mhs
+                "message" => "berhasil update data  Dosen",
+                "data" => $Dosen
             ]);
         } catch (\Throwable $e) {
             # code...
@@ -86,13 +86,13 @@ class MahasiswaController extends Controller
         
 
         
-            $mhs = Mahasiswa::findOrFail($id);
-            $mhs->delete();
+            $Dosen = Dosen::findOrFail($id);
+            $Dosen->delete();
         
             return response()->json([
                 "status" => "success",
-                "message" => "berhasil delete data  mahasiswa",
-                "data" => $mhs
+                "message" => "berhasil delete data  Dosen",
+                "data" => $Dosen
             ]);
         } catch (\Throwable $e) {
             # code...
