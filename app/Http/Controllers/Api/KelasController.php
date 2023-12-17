@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class KelasController extends Controller
 {
     public function getKelas(){
-        $kelas = Kelas::with('mahasiswa')->get();
+        $kelas = Kelas::with("prodi",'mahasiswa')->get();
         return response()->json([
             "status" => "success",
             "message" => "berhasil mendapatkan data semua kelas",
@@ -17,7 +17,7 @@ class KelasController extends Controller
         ]);
     }
     public function getKelasById($id){
-        $kelas = Kelas::with('mahasiswa')->findOrFail($id);
+        $kelas = Kelas::with('prodi,mahasiswa')->findOrFail($id);
         return response()->json([
             "status" => "success",
             "message" => "berhasil mendapatkan data  kelas",
