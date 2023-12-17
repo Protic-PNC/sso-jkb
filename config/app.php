@@ -170,6 +170,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Larapack\Hooks\HooksServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+
     ])->toArray(),
 
     /*

@@ -79,3 +79,7 @@ php artisan db:seed --class=RoleSeeder
 php artisan db:seed --class=KelasSeeder
 php artisan db:seed --class=MahasiswaSeeder
 php artisan db:seed --class=HasARoleSeeder
+
+
+Client ID: 4
+Client secret: HoEdLXbnbKkVZRBEqGECnzZ4tCY8da1KERXWWZDD

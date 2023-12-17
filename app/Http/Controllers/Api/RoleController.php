@@ -19,7 +19,7 @@ class RoleController extends Controller
 
     }
     public function getRole(){
-        $role = Role::with('dosen')->get();
+        $role = Role::all();
         return response()->json([
             "status" => "success",
             "message" => "berhasil mendapatkan semua role",

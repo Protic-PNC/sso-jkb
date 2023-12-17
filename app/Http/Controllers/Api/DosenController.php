@@ -10,21 +10,41 @@ class DosenController extends Controller
 {
     public function getDosen()
     {
-        $Dosen = Dosen::with('prodi')->get();
-        return response()->json([
-            "status" => "success",
-            "message" => "berhasil mendapatkan data semua Dosen",
-            "data" => $Dosen
-        ]);
+     
+        try {
+            # code...
+            $Dosen = Dosen::with('prodi')->get();
+            return response()->json([
+                "status" => "success",
+                "message" => "berhasil mendapatkan data semua Dosen",
+                "data" => $Dosen
+            ]);
+        } catch (\Throwable $e) {
+            # code...
+            return response()->json([
+                "status" => "failed",
+                "message" => $e->getMessage(),
+            ]);
+        }
     }
     public function getDosenById($id)
     {
-        $Dosen = Dosen::with('prodi')->findOrFail($id);
-        return response()->json([
-            "status" => "success",
-            "message" => "berhasil mendapatkan data  Dosen",
-            "data" => $Dosen
-        ]);
+       
+        try {
+            # code...
+            $Dosen = Dosen::with('prodi')->findOrFail($id);
+            return response()->json([
+                "status" => "success",
+                "message" => "berhasil mendapatkan data  Dosen",
+                "data" => $Dosen
+            ]);
+        } catch (\Throwable $e) {
+            # code...
+            return response()->json([
+                "status" => "failed",
+                "message" => $e->getMessage(),
+            ]);
+        }
     }
     public function store(Request $request)
     {
@@ -57,6 +77,7 @@ class DosenController extends Controller
         try {
             # code...
             $DosenData = [
+                "id" => $request->input('nidn'),
                 "nama" => $request->input('nama'),
                 "nidn" => $request->input('nidn'),
                 "id_prodi" => $request->input('id_prodi')
