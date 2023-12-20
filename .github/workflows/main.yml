@@ -13,7 +13,6 @@ jobs:
     env:
       php_version: 8.2
       php_extensions: gd
-      ASSETS_ARCHIVE: assets.zip
       VENDOR_ARCHIVE: vendor.zip
       remote_ssh_key: id_rsa_sso_jkb
     steps:
@@ -60,24 +59,13 @@ jobs:
             ${{ runner.os }}-composer-
       - name: Install composer deps
         run: composer install --no-interaction --prefer-dist
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-      - name: Install npm deps
-        run: npm ci --include=dev
-      - name: Build static assets
-        run: npm run build
       - name: Archive composer deps
         run: zip -qr ${{ env.VENDOR_ARCHIVE }} vendor
-      - name: Archive static build assets
-        run: zip -qr ${{ env.ASSETS_ARCHIVE }} public/build
       - name: Copy files
         run:
           rsync
             -e "ssh -i ~/.ssh/id_rsa -p ${{ secrets.SSH_PORT }}"
-            -a ./${{ env.VENDOR_ARCHIVE }} ./${{ env.ASSETS_ARCHIVE }}
+            -a ./${{ env.VENDOR_ARCHIVE }}
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_WORKDIR }}
       - name: Pull latest
         run:
@@ -93,6 +81,4 @@ jobs:
             -i ~/.ssh/id_rsa
             -p ${{ secrets.SSH_PORT }}
             -t ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-            "cd ${{ secrets.SSH_WORKDIR }} &&
-              ./scripts/deploy.sh
-              ${{ env.VENDOR_ARCHIVE }} ${{ env.ASSETS_ARCHIVE }}"
+            "cd ${{ secrets.SSH_WORKDIR }} && ./scripts/deploy.sh ${{ env.VENDOR_ARCHIVE }}"
