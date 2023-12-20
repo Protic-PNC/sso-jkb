@@ -2,7 +2,6 @@
 set -e
 
 VENDOR_ARCHIVE=$1
-ASSETS_ARCHIVE=$2
 
 # the php binary,
 # sometimes php is not on the path
@@ -14,13 +13,6 @@ main() {
         log "Unzipping vendor..."
         unzip -oq $VENDOR_ARCHIVE
         rm -f $VENDOR_ARCHIVE
-    fi
-
-    # unzip static assets
-    if [ -f "$ASSETS_ARCHIVE" ]; then
-        log "Unzipping static assets..."
-        unzip -oq $ASSETS_ARCHIVE
-        rm -f $ASSETS_ARCHIVE
     fi
 
     log "Deploying app ($(git rev-parse --short HEAD))..."
