@@ -39,7 +39,7 @@ Route::DELETE('/dosen-delete/{id}', [DosenController::class, 'delete'])->name('a
 Route::GET('/kelas', [KelasController::class, 'getKelas'])->name('api.kelas');
 Route::GET('/kelas/{id}', [KelasController::class, 'getKelasById'])->name('api.kelasId');
 Route::GET('/prodi', [ProdiController::class, 'getProdi'])->name('api.prodi');
-Route::GET('/prodi/{id}', [ProdiController::class, 'getProdiById'])->name('api.kelasId');
+Route::GET('/prodi/{id}', [ProdiController::class, 'getProdiById'])->name('api.prodiId');
 
 
 Route::GET('/hasrole', [RoleController::class, 'getHasARole'])->name('api.HasRole');
