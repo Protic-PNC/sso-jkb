@@ -21,4 +21,18 @@ class Dosen extends Model
     {
         return $this->hasOne(Prodi::class, 'id', 'id_prodi');
     }
+    /**
+     * Get all of the comments for the Dosen
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    /**
+     * The roles that belong to the Dosen
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'has_a_roles', 'id_dosen', 'id_role');
+    }
 }

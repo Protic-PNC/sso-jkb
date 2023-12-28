@@ -13,7 +13,7 @@ class DosenController extends Controller
      
         try {
             # code...
-            $Dosen = Dosen::with('prodi')->get();
+            $Dosen = Dosen::with('prodi','roles')->get();
             return response()->json([
                 "status" => "success",
                 "message" => "berhasil mendapatkan data semua Dosen",
