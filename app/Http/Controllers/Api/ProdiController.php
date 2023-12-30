@@ -24,4 +24,6 @@ class ProdiController extends Controller
             "data" => $kelas
         ]);
     }
+
+    
 }
